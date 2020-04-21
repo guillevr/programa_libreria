@@ -161,7 +161,21 @@ def detalles_libro(isbn):
                             desc_corta=libro["shortDescription"]
                             return render_template("template1.html",titulo=libro["title"],npag=npag,desc_corta=desc_corta,autores=nautores,imagen=img)
 
-     
+                        
+### Programa de mejoras.
+@app.route('/categoria/<n_categoria>')
+def libros_por_categoria(n_categoria):
+
+    ## En lpc guardaremos los libros por categoria.
+    lpc=[]
+
+    for libro in biblioteca:
+        if n_categoria in libro["categories"]:
+            dic={"titulo":libro["title"],"isbn":libro["isbn"]}
+            lpc.append(dic)
+    
+    return render_template("template2.html",libros=lpc,categoria=n_categoria)
+
 
 	
 app.run(debug=True)

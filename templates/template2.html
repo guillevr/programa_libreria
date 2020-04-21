@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>{{categoria}}</title>
+</head>
+<body>
+    <br/>
+	<br/>
+	<p><strong>Libros de la categoría {{categoria}}:</strong></p>
+    <ul>
+        {% for libro in libros-%}
+            <li><a href="/libro/{{libro.isbn}}">{{libro.titulo}}</a></li>
+        {% endfor -%}
+    </ul>    
+
+	<br/>
+
+</body>
+</html>
