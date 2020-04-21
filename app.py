@@ -97,3 +97,71 @@ def inicio():
     return render_template("inicio.html",nombre="Guillermo Vizcaino",libros=tit_isbn)
 
 
+### Programa  para la pagina detalle del libro
+@app.route('/libro/<isbn>')
+def detalles_libro(isbn):
+
+    isbns=[]
+
+    for libro in biblioteca:
+        isbns.append(libro["isbn"])
+
+    if isbn not in isbns:
+        abort(404)
+    else:
+        for libro in biblioteca:
+            if libro["isbn"]==isbn:
+                if libro["status"]=="MEAP":
+                    meap="ESTE LIBRO NO SE HA PUBLICADO"
+                    return render_template("template1.html",meap=meap)
+                else:
+                    img=libro["thumbnailUrl"]      
+                    npag=libro["pageCount"]
+                    desc_larga=[libro["longDescription"]]
+                    desc_corta=[libro["shortDescription"]]
+
+                    ### Autores
+                    nautores=""
+
+                    for autor in libro["authors"]:
+                        nautores=nautores+autor+", "
+                    
+                    nautores=nautores[:len(nautores)-2]
+                    ###################################
+
+                    
+                    if len(libro["categories"]) != 0:
+
+                        autores=libro["authors"]
+                        categorias=libro["categories"]
+
+                        if len(libro["longDescription"]) == 0 and len(libro["shortDescription"]) == 0:
+                            return render_template("template1.html",titulo=libro["title"],npag=npag,autores=nautores,categorias=categorias,imagen=img)
+                        elif len(libro["longDescription"]) != 0:
+                            desc_larga=libro["longDescription"]
+                            return render_template("template1.html",titulo=libro["title"],npag=npag,desc_larga=desc_larga,autores=nautores,categorias=categorias,imagen=img)
+                        elif len(libro["shortDescription"]) != 0:
+                            desc_corta=libro["shortDescription"]
+                            return render_template("template1.html",titulo=libro["title"],npag=npag,desc_corta=desc_corta,autores=nautores,categorias=categorias,imagen=img)
+                        else:
+                            desc_corta=libro["shortDescription"]
+                            return render_template("template1.html",titulo=libro["title"],npag=npag,desc_corta=desc_corta,autores=nautores,categorias=categorias,imagen=img)
+
+                    else:
+
+                        if len(libro["longDescription"]) == 0 and len(libro["shortDescription"]) == 0:
+                            return render_template("template1.html",titulo=libro["title"],npag=npag,autores=nautores,imagen=img)
+                        elif len(libro["longDescription"]) != 0:
+                            desc_larga=libro["longDescription"]
+                            return render_template("template1.html",titulo=libro["title"],npag=npag,desc_larga=desc_larga,autores=nautores,imagen=img)
+                        elif len(libro["shortDescription"]) != 0:
+                            desc_corta=libro["shortDescription"]
+                            return render_template("template1.html",titulo=libro["title"],npag=npag,desc_corta=desc_corta,autores=nautores,imagen=img)
+                        else:
+                            desc_corta=libro["shortDescription"]
+                            return render_template("template1.html",titulo=libro["title"],npag=npag,desc_corta=desc_corta,autores=nautores,imagen=img)
+
+     
+
+	
+app.run(debug=True)
