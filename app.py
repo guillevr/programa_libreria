@@ -1,9 +1,12 @@
 from flask import Flask, render_template,abort
 app = Flask(__name__)	
 
-import json,random
+import json,random,os
 with open("books.json") as fichero:
 	datos=json.load(fichero)
+
+## Para el despliegue de HEROKU
+port=os.environ["PORT"]
 
 ##################################################################################
 ## Crearemos una lista donde almacenaremos todos los libros, incluyendo los que no 
@@ -177,5 +180,5 @@ def libros_por_categoria(n_categoria):
     return render_template("template2.html",libros=lpc,categoria=n_categoria)
 
 
-	
-app.run(debug=True)
+## Sirve para que escuche por cualquier puerto.
+app.run('0.0.0.0',int(port), debug=True)
