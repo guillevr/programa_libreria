@@ -11,7 +11,7 @@ Debes crear una aplicación dinámica en python flask con las siguientes caracte
 **-** Cuando se muestra el detalle de un libro y se muestran las categorías, estás son un enlace a la ruta /categoria/<categoria>. Por ejemplo, si el primer libro tiene una categoría  Mobile, al pulsar sobre el enlace nos lleva a la página /categoria/Mobile  
 **-** Libros por categoría: Esta página está en la ruta /categoria/<categoria>: Es muy similar a la página principal, pero sólo muestra la los libros de esa ccategoría. Además debe a aprecer un título con la categoría.  
 
-## Despliegue en heroku
+**Despliegue en heroku**
 
 Debes guardar la aplicación en un repositorio de GitHub para desplegarla posteriormente en Heroku.  
 **¿Qué debes entregar?**  
