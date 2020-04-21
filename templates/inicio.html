@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>Biblioteca</title>
+</head>
+<body>
+    <br/>
+	<br/>
+	<h1 align="center">Biblioteca</h1>
+	<h1 align="center">{{nombre}}</h1>
+	<br/>
+	<br/>
+	<p><strong>Libros disponibles:</strong></p>
+    <ul>
+        {% for libro in libros-%}
+            <li><a href="/libro/{{libro.isbn}}">{{libro.titulo}}</a></li>
+        {% endfor -%}
+    </ul>    
+
+	<br/>
+
+</body>
+</html>
