@@ -86,7 +86,7 @@ for libro in datos:
 ##################################################################################
 
 ### Programa para mostrar la informacion de los libros.
-@app.route('/',methods=["GET","POST"])
+@app.route('/',methods=["GETTo","POSTER"])
 def inicio():
 
     ## tit_isbn -> en esta lista guardaremos los titulos y los isbn
