@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>   
+<title>{{titulo}}</title>
+</head>
+<body>
+    {%if not meap%}
+        {%if not categorias%}
+            <p><strong>Libro: </strong> {{titulo}}.</p>
+            <img src={{imagen}} align="center">
+            <p><strong>Nº de páginas: </strong>{{npag}}</p>
+            <p><strong>Autores: </strong>{{autores}}.</p>
+            {%if not desc_larga and not desc_corta %}
+                <p>No se han encontrado descripciones.</p>
+            {%elif not desc_larga%}
+                <p><strong>Descripcion:</strong> {{desc_corta}}</p>
+            {%elif not desc_corta%}
+                <p><strong>Descripcion:</strong> {{desc_larga}}</p>
+            {%else%}
+                <p><strong>Descripcion:</strong> {{desc_corta}}</p>
+            {% endif %}
+            <br/>
+            <br/>
+
+        {% else %}
+            <p><strong>Libro: </strong> {{titulo}}</p>
+            <img src={{imagen}} align="center">
+            <p><strong>Nº de páginas: </strong>{{npag}}</p>
+            <p><strong>Autores: </strong>{{autores}}.</p>
+            {%if not desc_larga and not desc_corta %}
+                <p>No se han encontrado descripciones.</p>
+            {%elif not desc_larga%}
+                <p><strong>Descripcion:</strong> {{desc_corta}}</p>
+            {%elif not desc_corta%}
+                <p><strong>Descripcion:</strong> {{desc_larga}}</p>
+            {%else%}
+                <p><strong>Descripcion:</strong> {{desc_corta}}</p>
+            {% endif %}
+            <br/>
+            <p><strong>Categorías: </strong></p>
+            <ul>
+                {% for cat in categorias-%}
+                    <li><a href="/categoria/{{cat}}">{{cat}}</a></li>
+                {% endfor -%}
+            </ul> 
+            <br/>
+        {% endif %}
+    {% else %}
+        <p><strong>{{meap}}</strong></p>
+    {% endif %}
+    
+
+       
+
+	<br/>
+
+</body>
+</html>
